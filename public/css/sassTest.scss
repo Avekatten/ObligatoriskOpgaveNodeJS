@@ -1,0 +1,57 @@
+$RowAndData: 3px black;
+$padding: 15px;
+$color: lightblue;
+$root: "/images/";
+
+body
+{
+    background: url("#{$root}background.jpeg");
+}
+
+table
+{
+    border: 5px black;
+    -collapse: collapse;
+    width: 100%;
+    float: left;
+}
+
+td
+{
+    border: $RowAndData;
+    width: 50%;
+    padding: $padding;
+    text-align: center;
+    vertical-align: middle;
+}
+
+tr
+{
+    border: $RowAndData;
+    background-color: $color;
+}
+
+tr:nth-child(even)
+{
+    background-color: darken($color, 10%);
+}
+
+th
+{
+    background-color: burlywood;
+    color: white;
+
+    padding: $padding;
+}
+
+.transparent
+{
+    border:none;
+
+    background-color: transparent;
+}
+
+.hidden
+{
+    display: none;
+}

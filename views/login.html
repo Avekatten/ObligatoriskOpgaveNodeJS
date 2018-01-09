@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+
+    <title>Log In</title>
+</head>
+
+<body>
+    <form id="logIn" action="/login" method="post">
+        <div>
+            <h1>Sign in to make changes</h1>
+
+            <label for="username">Username: </label>
+                
+            <input type="text" id="username" name="username"></input>
+
+            <label for="password">Password: </label>
+            
+            <input type="text" id="password" name="password"></input>
+        </div>
+    <input type="submit" id="logInBtn" value="Log In"></input>
+    </form>
+    <div id="container">
+    <button id="newUserBtn">Create New User</button>
+    </div>
+    
+    <footer><p>NodeJS Andreas Lykholt Svendsen</p></footer>
+</body>
+</html>

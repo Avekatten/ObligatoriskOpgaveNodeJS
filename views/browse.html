@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/myJS.js"></script>
+    <title>Browse Products</title>
+</head>
+
+<body>
+    <header>
+        <div id="siteNavigation">
+            <a href="/add">Add</a>
+            <a href="/delete">Delete</a>
+            <a href="/browse">Browse</a>
+        </div>
+    </header>
+
+    <h1 id="productTableTxt">Product Table</h1>
+
+    <form action="/products" method="post" name="form1" id="form1" class="hidden">
+            <input type="text" id="myProduct" class="hidden" name="productName"></input>
+    </form>
+
+    <section id="allProducts" action="/add" method="post">
+        <table id="productTable">
+            <th>Product Name</th>
+
+            <th>Product Details</th>
+            
+        </table>
+        <i>Click the name of a product to delete it!</i>
+    </section>
+    
+
+    <form id="productAdd" action="/add" method="post">
+        <div>
+            <h1>Add a product to the database</h1>
+
+            <label for="productName">Product name: </label>
+                
+            <input type="text" id="productName" name="productName"></input>
+
+            <label for="productDescription">Product description: </label>
+            
+            <input type="text" id="productDescription" name="productDescription"></input>
+        </div>
+    <input type="submit" id="addToDB" value="Add product to database"></input>
+    </form>
+    
+
+    <footer><p>NodeJS Andreas Lykholt Svendsen</p></footer>
+</body>
+</html>

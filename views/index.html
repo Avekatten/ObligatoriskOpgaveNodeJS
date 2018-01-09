@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+
+    <title>Add Product</title>
+</head>
+
+<body>
+    <header>
+        <div id="siteNavigation">
+            <a href="/add">Add</a>
+            <a href="/delete">Delete</a>
+            <a href="/browse">Browse</a>
+        </div>
+
+    </header>
+
+    <form id="productForm" action="/add" method="post">
+        <div>
+            <h1>Add a product to the database</h1>
+
+            <label for="productName">Product name: </label>
+                
+            <input type="text" id="productName" name="productName"></input>
+
+            <label for="productDescription">Product description: </label>
+            
+            <input type="text" id="productDescription" name="productDescription"></input>
+        </div>
+    <input type="submit" id="addToDB" value="Add product to database"></input>
+    </form>
+    <footer><p>NodeJS Andreas Lykholt Svendsen</p></footer>
+</body>
+</html>
