@@ -32,7 +32,8 @@ app.get('/products/:id', function (req, res)
     MongoClient.connect(url, function (err, db) {
     var col = db.collection('products');
 
-    col.findOne({ '_id': ObjectId(req.params.id) }, function (err, result) {
+    col.findOne({ '_id': ObjectId(req.params.id) }, function (err, result)
+     {
         res.json(result);
     })
     db.close();
@@ -55,6 +56,21 @@ app.post('/products', function(req, res)
     });
 });
 
+app.put('/orders/:id', function (req, res)
+{
+    
+    MongoClient.connect(mongodburl, function (err, db)
+    {
+        var col = db.collection('orders');
+
+        col.updateOne({ '_id': ObjectId(req.params.id) }, {$set : req.body}, function(err, result)
+        {
+            res.status(204);
+            res.json();
+        });
+        db.close();
+    });
+});
 
 app.delete('/products/:id', function (req, res)
 {

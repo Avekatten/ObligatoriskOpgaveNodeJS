@@ -95,7 +95,7 @@ app.post('/login', function (req, res)
                     {
                         console.log("username and password match found");
                         db.close;
-                        res.redirect('/add');
+                        res.redirect('/browse');
                         return;
                     }
                 }
@@ -106,6 +106,14 @@ app.post('/login', function (req, res)
             });
             
         } 
+    });
+});
+
+app.get('/SignUp', function (req,res)
+{
+    res.sendFile(myPath + 'signUp.html', function (err)
+    {
+
     });
 });
 

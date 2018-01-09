@@ -27,4 +27,19 @@ app.get('/users', function(req, res)
     });
 });
 
+app.post('/users', function(req, res)
+{
+    MongoClient.connect(url, function(err, db)
+    {
+        var collection = db.collection('users');
+
+         collection.insert(req.body, function(err, data)
+        {
+        
+            res.redirect('/login');
+            db.close();
+        });
+    });
+})
+
 module.exports = app;

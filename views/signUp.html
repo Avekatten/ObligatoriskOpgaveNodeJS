@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+
+    <title>Add Product</title>
+</head>
+
+<body>
+    <form id="signUpForm" action="/users" method="post">
+        <div>
+            <h1>Create a new user</h1>
+
+            <label for="userName">Enter new username: </label>
+                
+            <input type="text" id="username" name="userName"></input>
+
+            <label for="password">Enter new password: </label>
+            
+            <input type="text" id="password" name="password"></input>
+        </div>
+        <input type="submit" id="logInBtn" value="Log In"></input>
+    </form>
+    <select name="userTypes" form="signUpForm" id="userTypes">
+        <option value="Admin">Admin</option>
+        <option value="Guest">Guest</option>
+    </select>
+    
+    <footer><p>NodeJS Andreas Lykholt Svendsen</p></footer>
+</body>
+</html>

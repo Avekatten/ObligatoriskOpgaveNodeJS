@@ -27,7 +27,7 @@ a
     font-size: 19px;
 }
 
-#messageDisplay, #logIn, #productForm
+#messageDisplay, #logIn, #productForm, #signUpForm
 {
 	display: flex;
 	flex-direction: column;
@@ -67,7 +67,7 @@ h1
 	text-align: center;
 }
 
-#productName, #productDescription, #addToDB, #username, #password, #logInBtn, #newUserBtn
+#productName, #productDescription, #addToDB, #username, #password, #logInBtn, #newUserBtn, #signUpBtn
 {
 	
 	font-size: 14px;
@@ -92,7 +92,7 @@ h1
 	float: left;
 }
 
-#addToDB, #logInBtn
+#addToDB, #logInBtn, #signUpBtn
 {
 	margin-top: 20px;
 	background: #08c;
