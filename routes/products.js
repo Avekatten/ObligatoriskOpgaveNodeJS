@@ -3,11 +3,10 @@ const app = express();
 
 var bodyParser = require('body-parser');
 var path = require('path');
-const myPath = __dirname + '/views/';
 
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
-var url = process.env.mongoDB;
+var url = process.env.MONGODB;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -97,8 +96,6 @@ productRouter.route('/:id')
                     res.status(404);
                 }
                 res.status(200);
-                res.json();
-
             });
             db.close();
         });

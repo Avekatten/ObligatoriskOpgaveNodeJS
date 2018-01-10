@@ -6,7 +6,6 @@ $(document).ready(function()
 
 function getProducts()
 {
-    console.log("test");
     $.getJSON("/products", function(data)
     {
         var i = 0;
@@ -56,8 +55,10 @@ function deleteAlert()
         $.ajax({ url: '/products/' + $(this).attr('id'), method: 'DELETE', })
         .done(function()
         {
+            location.reload();
             console.log('deleted');
-            window.location.reload(true);
+            
         });
+        window.location.reload(true);
     }
 }

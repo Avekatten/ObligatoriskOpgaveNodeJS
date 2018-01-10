@@ -3,9 +3,6 @@ const app = express();
 
 var bodyParser = require('body-parser');
 var path = require('path');
-const myPath = __dirname + '/views/';
-var cors = require('cors');
-app.use(cors());
 
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;

@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 const myPath = __dirname + '/src/views/';
 
+// mongoDB
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 var url = process.env.mongoDB; //mongodb://AndreasDB:zaq123@gettingstarted-shard-00-00-ow3hm.mongodb.net:27017,gettingstarted-shard-00-01-ow3hm.mongodb.net:27017,gettingstarted-shard-00-02-ow3hm.mongodb.net:27017/zalandodummy?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin
@@ -12,15 +13,13 @@ var url = process.env.mongoDB; //mongodb://AndreasDB:zaq123@gettingstarted-shard
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//enable CORS
+var cors = require('cors');
+app.use(cors());
+
+//get routes
 const productsModule = require('./routes/products.js');
 const usersModule = require('./routes/users.js');
-
-app.use(productsModule);
-app.use(usersModule);
-
-
-
-
 
 app.get('/', function(req, res)
 {
@@ -109,5 +108,8 @@ app.get('/SignUp', function (req,res)
 
     });
 });
+
+app.use(productsModule);
+app.use(usersModule);
 
 app.listen(process.env.PORT || 5000);
