@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/signup.js"></script>
 
-    <title>Add Product</title>
+    <title>Sign Up</title>
 </head>
 
 <body>
@@ -14,20 +16,21 @@
         <div>
             <h1>Create a new user</h1>
 
-            <label for="userName">Enter new username: </label>
+            <label for="username">Enter new username: </label>
                 
-            <input type="text" id="username" name="userName"></input>
+            <input type="text" id="username" name="username"></input>
 
             <label for="password">Enter new password: </label>
             
             <input type="text" id="password" name="password"></input>
-        </div>
-        <input type="submit" id="logInBtn" value="Log In"></input>
+
+            <input type="button" id="signUpBtn" value="Sign up" onclick="checkPassword()"></input>
     </form>
-    <select name="userTypes" form="signUpForm" id="userTypes">
-        <option value="Admin">Admin</option>
-        <option value="Guest">Guest</option>
-    </select>
+        <select name="userTypes" form="signUpForm" id="userTypes">
+            <option value="Admin">Admin</option>
+            <option value="Guest">Guest</option>
+        </select>
+        </div>
     
     <footer><p>NodeJS Andreas Lykholt Svendsen</p></footer>
 </body>

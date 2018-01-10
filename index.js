@@ -3,11 +3,11 @@ const app = express();
 
 var bodyParser = require('body-parser');
 var path = require('path');
-const myPath = __dirname + '/views/';
+const myPath = __dirname + '/src/views/';
 
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
-var url = 'mongodb://AndreasDB:zaq123@gettingstarted-shard-00-00-ow3hm.mongodb.net:27017,gettingstarted-shard-00-01-ow3hm.mongodb.net:27017,gettingstarted-shard-00-02-ow3hm.mongodb.net:27017/zalandodummy?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin';
+var url = process.env.mongoDB; //mongodb://AndreasDB:zaq123@gettingstarted-shard-00-00-ow3hm.mongodb.net:27017,gettingstarted-shard-00-01-ow3hm.mongodb.net:27017,gettingstarted-shard-00-02-ow3hm.mongodb.net:27017/zalandodummy?ssl=true&replicaSet=GettingStarted-shard-0&authSource=admin
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -17,6 +17,10 @@ const usersModule = require('./routes/users.js');
 
 app.use(productsModule);
 app.use(usersModule);
+
+
+
+
 
 app.get('/', function(req, res)
 {
@@ -31,20 +35,6 @@ app.get('/add', function(req, res)
     });
 
 });
-
-app.post('/add', function(req, res)
-{
-    MongoClient.connect(url, function(err, db) {
-        
-        var collection = db.collection('products');
-
-         collection.insert(req.body, function(err, data) {
-        
-            res.redirect('/browse');
-            db.close();
-        });
-    });
-})
 
 app.get('/delete', function(req, res)
 {
@@ -90,6 +80,9 @@ app.post('/login', function (req, res)
             {
                 for (var i = 0; i < users.length; i++)
                 {
+                    console.log(JSON.stringify(users[i].username));
+                    console.log(JSON.stringify(users[i].password));
+
                     if (JSON.stringify(users[i].username) === (JSON.stringify(req.body.username)) &&
                      JSON.stringify(users[i].password) === (JSON.stringify(req.body.password)))
                     {

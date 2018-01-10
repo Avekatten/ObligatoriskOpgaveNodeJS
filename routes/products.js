@@ -12,82 +12,120 @@ var url = 'mongodb://AndreasDB:zaq123@gettingstarted-shard-00-00-ow3hm.mongodb.n
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+var productRouter = express.Router();
 
-app.get('/products', function(req, res)
-{
-    MongoClient.connect(url, function(err, db) {
+
+productRouter.route('/')
+    .get(function(req, res)
+    {
+        MongoClient.connect(url, function(err, db)
+        {
+            if (err)
+            {
+                console.log("Couldn't connect to database!");
+            }
+            var collection = db.collection('products');
+    
+            collection.find({}).toArray(function(err, data)
+            {
+                res.status(200);
+                res.json(data);
+                db.close();
+            });
+        });
+    })
+    .post(function(req, res)
+    {
+        MongoClient.connect(url, function(err, db)
+        {
+            if (err)
+            {
+                console.log("Couldn't connect to database")
+            }
+            var collection = db.collection('products');
+    
+             collection.insert(req.body, function(err, data) 
+             {
+                 if (err)
+                 {
+                     res.status(404);
+                 }
+                res.status(201);
+                res.redirect('/browse');
+                db.close();
+            });
+        });
+    });
+
+productRouter.route('/:id')
+    .get(function (req, res)
+    {
+        MongoClient.connect(url, function (err, db)
+        {
+            if (err)
+            {
+                console.log("Couldn't connect to database")
+            }
+            var col = db.collection('products');
         
-        var collection = db.collection('products');
+            col.findOne({ '_id': ObjectId(req.params.id) }, function (err, result)
+            {
+                if (err)
+                {
+                    res.status(404);
+                }
+                res.status(200);
+                res.json(result);
+            })
+            db.close();
+        });
+    })
+    .delete(function (req, res)
+    {
+        MongoClient.connect(url, function (err, db)
+        {
+            if (err)
+            {
+                console.log("Couldn't connect to database")
+            }
+            var col = db.collection('products');
 
-        collection.find({}).toArray(function(err, data) {
-            
-            res.json(data);
+            col.deleteOne({ '_id': ObjectId(req.params.id) }, function (err, result)
+            {
+                if (err)
+                {
+                    res.status(404);
+                }
+                res.status(200);
+                res.json();
+
+            });
+            db.close();
+        });
+    })
+    .put(function (req, res)
+    {
+        MongoClient.connect(url, function (err, db)
+        {
+            if (err)
+            {
+                console.log("Couldn't connect to database")
+            }
+            var col = db.collection('products');
+
+            col.updateOne({ '_id': ObjectId(req.params.id) }, {$set : req.body}, function(err, result)
+            {
+                if (err)
+                {
+                    res.status(404);
+                }
+                res.status(204);
+                res.json();
+            });
             db.close();
         });
     });
-});
 
-app.get('/products/:id', function (req, res)
-{
-    MongoClient.connect(url, function (err, db) {
-    var col = db.collection('products');
-
-    col.findOne({ '_id': ObjectId(req.params.id) }, function (err, result)
-     {
-        res.json(result);
-    })
-    db.close();
-    });
-});
-
-app.post('/products', function(req, res)
-{
-    MongoClient.connect(url, function(err, db)
-    {
-        var collection = db.collection('products');
-
-        collection.deleteOne(req.body, function(err, obj)
-        {
-            if (err) throw err
-            console.log("Deleted product");
-            db.close;
-            res.redirect('/browse');
-        })
-    });
-});
-
-app.put('/orders/:id', function (req, res)
-{
-    
-    MongoClient.connect(mongodburl, function (err, db)
-    {
-        var col = db.collection('orders');
-
-        col.updateOne({ '_id': ObjectId(req.params.id) }, {$set : req.body}, function(err, result)
-        {
-            res.status(204);
-            res.json();
-        });
-        db.close();
-    });
-});
-
-app.delete('/products/:id', function (req, res)
-{
-
-    MongoClient.connect(url, function (err, db)
-    {
-        var col = db.collection('products');
-
-        col.deleteOne({ '_id': ObjectId(req.params.id) }, function (err, result)
-        {
-            res.status(204);
-            res.json();
-
-        });
-
-        db.close();
-    });
-});
+app.use('/products', productRouter);
 
 module.exports = app;

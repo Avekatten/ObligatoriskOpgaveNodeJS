@@ -34,10 +34,10 @@ function getProducts()
             productNameButton.onclick = deleteAlert;
 
             productNameButton.setAttribute("id","" + data[i]._id);
-            
             productDescriptionButton.setAttribute("id","" + data[i].id);
-            productDescriptionButton.setAttribute("class","transparent");
-            productNameButton.setAttribute("class", "transparent");
+
+            productDescriptionButton.setAttribute("class","delete");
+            productNameButton.setAttribute("class", "delete");
 
 
 
@@ -47,17 +47,17 @@ function getProducts()
     });
 }
 
-function deleteAlert(productName)
+function deleteAlert()
 {
     var txt = $(this).text();
-    if (confirm("Delete the " + txt + " product?") == true)
-    {
-        $(myProduct).val(txt);
-        $(form1).submit();
-        
-    }
-    else
-    {
-
+    if (confirm("Are you sure you want to delete the " + txt + " product?"))
+    { 
+        console.log('/products/' + $(this).attr('id'));
+        $.ajax({ url: '/products/' + $(this).attr('id'), method: 'DELETE', })
+        .done(function()
+        {
+            console.log('deleted');
+            window.location.reload(true);
+        });
     }
 }

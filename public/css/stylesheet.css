@@ -1,4 +1,4 @@
-@import url("output.css");
+@import url("sasscss.css");
 
 *{
 	font-family: 'Roboto', sans-serif;
@@ -67,7 +67,7 @@ h1
 	text-align: center;
 }
 
-#productName, #productDescription, #addToDB, #username, #password, #logInBtn, #newUserBtn, #signUpBtn
+#productName, #productDescription, #addToDB, #username, #password, #logInBtn, #newUserBtn, #signUpBtn, #userTypes, #signUpBtn2
 {
 	
 	font-size: 14px;
@@ -77,6 +77,14 @@ h1
     width: 500px;
     margin-bottom: 10px;
     
+}
+
+#userTypes
+{
+	position: relative;
+	top: -60px;
+	text-align-last:center;
+	font-size: 20px;
 }
 
 #productBox
@@ -92,11 +100,26 @@ h1
 	float: left;
 }
 
-#addToDB, #logInBtn, #signUpBtn
+#addToDB, #logInBtn, #signUpBtn, #signUpBtn2
 {
 	margin-top: 20px;
 	background: #08c;
 	font-size: 20px;
+}
+
+#signUpBtn
+{
+	position: relative;
+	top: 60px;
+	
+}
+
+#signUpBtn2
+{
+	position: relative;
+	top: -10px;
+	text-align: center;
+	color: black;
 }
 
 #newUserBtn
@@ -106,6 +129,7 @@ h1
 	font-size: 20px;
 	
 }
+
 
 .msg
 {
